@@ -46,3 +46,6 @@ content.backup-*/
 
 # pnpm 在本仓库内的本地 store（见 .npmrc / 本机沙箱限制）
 .pnpm-store/
+
+# 本机上的一次性检查脚本，不入库
+.tmp-*
