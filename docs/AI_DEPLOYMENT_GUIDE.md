@@ -1,5 +1,10 @@
 # AI Deployment Guide（Fuwari 定制部署 Runbook）
 
+> ⚠️ **本文档来自上游仓库，写的是原作者的站点。本站已完成部署改造，不要再按本文档从零执行。**
+> 适用于本站的配置与部署说明见 [`../README.md`](../README.md)。本站与本文档的差异包括：
+> 内容不分离（文章直接放在仓库的 `content/`，`ENABLE_CONTENT_SYNC=false`，无需 `CONTENT_REPO_URL`）；
+> `ALBIREO_SECRET` 仍是 Vercel 上必配项；文中提到的 base64 加密域名数组在当前代码中并不存在。
+
 > 这是一份给 AI 助手的仓库内部署/定制 Runbook。
 > 当用户说“帮我部署”“我想上线”“按这个仓库部署”时，请按照本文档流程执行：
 > 先收集信息，再修改配置，最后验证。不要跳过环境变量检查。

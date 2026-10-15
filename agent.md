@@ -1,5 +1,10 @@
 # Fuwari Project Context for AI Agents
 
+> ⚠️ **本文件来自上游仓库。若用户要求部署/定制「本站」，不要按下面第 5 行指向的
+> `docs/AI_DEPLOYMENT_GUIDE.md` 从零执行**——那份 runbook 描述的是原作者的站点，本站已完成改造。
+> 请先读 [`README.md`](./README.md)（本站的实际配置、写作与部署流程）与
+> [`docs/AI_DEPLOYMENT_GUIDE.md`](./docs/AI_DEPLOYMENT_GUIDE.md) 顶部的差异说明。
+
 > **File Purpose**: This document consolidates project context for AI agents (Claude, Gemini, etc.) to quickly understand the Fuwari project structure, technology stack, and workflows.
 >
 > **Deployment**: If the user asks to deploy/customize this repository for their own site, read and follow [`docs/AI_DEPLOYMENT_GUIDE.md`](./docs/AI_DEPLOYMENT_GUIDE.md) as the interactive runbook.

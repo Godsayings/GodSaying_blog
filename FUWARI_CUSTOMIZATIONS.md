@@ -1,5 +1,12 @@
 # 🛠️ 其他用户自定义修改指南
 
+> ⚠️ **本文档来自上游仓库，部分内容已与当前代码不符，照做会踩空。**
+> 本站的实际定制方式请以根目录的 [`README.md`](./README.md) 为准。
+> 最典型的一处：本文档提到的「Layout 中用 Base64 加密的域名数组（`v` / `_d`）」在当前代码中
+> **已经不存在**——防盗链已重写为配置驱动的 `src/scripts/domain-warning.ts`，改 `src/config.ts`
+> 里的 `antiLeechConfig.officialSites` 即可。文中若干文件路径（如 `src/pages/donate.astro`、
+> `public/xinghui.avif`、`.github/workflows/friends-auto-merge.yml`）在本仓库中也不存在。
+
 如果您 Fork 了本仓库并希望将其定制为您自己的博客，请务必修改以下关键文件。
 
 
