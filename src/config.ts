@@ -11,34 +11,35 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "Kazusa酱的猫窝",
-	subtitle: "踩坑记录&碎碎念",
-	description:
-		"Kazusa酱的猫窝，记录技术踩坑、开发笔记与生活碎碎念。内容涵盖 Unity 开发、AI 技术应用、服务器部署、OpenWRT 路由器刷机、Github API、前端工程化、工具软件与数码折腾等原创教程和实战经验，持续分享实用技巧、问题解决方案与日常折腾记录，欢迎一起交流学习，也欢迎在评论区留言交流。",
+	title: "GodSaying 的博客",
+	subtitle: "记录与技术折腾",
+	description: "GodSaying 的个人博客，记录技术学习、开发实践与日常折腾。",
 
 	keywords: [],
 	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
-	googleSiteVerification: "3H5DEPv9okzfZVvgZ1T9aAjQShKvtb7VKn71kVDNin8",
+	// 在 Google Search Console 拿到属于你自己的验证 token 后填在这里；留空则不输出该 meta 标签
+	googleSiteVerification: "",
 	themeColor: {
-		hue: 345, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
+		hue: 200, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
 		fixed: true, // Hide the theme color picker for visitors
 		forceDarkMode: true, // Force dark mode and hide theme switcher
 	},
 	banner: {
+		// 首页顶部大图，默认关闭。要开启就把它设为 true，并把 src 指向一张真实存在的图
 		enable: false,
-		src: "/xinghui.avif", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		src: "/og.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
-			enable: true, // Display the credit text of the banner image
-			text: "Pixiv @chokei", // Credit text to be displayed
+			enable: false, // Display the credit text of the banner image
+			text: "", // Credit text to be displayed
 
-			url: "https://img.micostar.cc/random", // (Optional) URL link to the original artwork or artist's page
+			url: "", // (Optional) URL link to the original artwork or artist's page
 		},
 	},
 	background: {
 		enable: true, // Enable background image
-		src: "https://www.loliapi.com/acg", // 优先使用新 API
+		src: "https://www.loliapi.com/acg", // 每次访问取一张随机图（第三方服务）
 		position: "center", // Background position: 'top', 'center', 'bottom'
 		size: "cover", // Background size: 'cover', 'contain', 'auto'
 		repeat: "no-repeat", // Background repeat: 'no-repeat', 'repeat', 'repeat-x', 'repeat-y'
@@ -66,20 +67,18 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Friends,
 		LinkPreset.Apps,
 		LinkPreset.Works,
-		LinkPreset.Stats,
 	],
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar:
-		"https://avatars.githubusercontent.com/u/195487617?s=400&u=0fc36034f2a535df94218c0b77e8b3adf1619d92&v=4", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "Kazusa1085",
-	bio: ["NOT A FAT CAT !!!"],
+	avatar: "https://avatars.githubusercontent.com/u/61729043?v=4", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	name: "Godsayings",
+	bio: ["Studying"],
 	links: [
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github-alt",
-			url: "https://github.com/Kazusa1085",
+			url: "https://github.com/Godsayings",
 		},
 	],
 };
@@ -90,33 +89,38 @@ export const licenseConfig: LicenseConfig = {
 	url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
 };
 
-//图片回退
+//图片回退（双 CDN 图床回退）。本站暂未使用图床，保持关闭；
+//需要时填入你自己的图床域名，并把 enable 改成 true。
 export const imageFallbackConfig: ImageFallbackConfig = {
 	enable: false,
-	originalDomain: "img.micostar.cc", // 主力图床 (新项目)
-	fallbackDomain: "image.cloudrunmax.top", // R2 备用图床 (旧项目)
+	originalDomain: "", // 主力图床域名
+	fallbackDomain: "", // 备用图床域名
 };
 
+// Umami 统计。本站未接入，保持关闭；接入自己的实例后再填 baseUrl / shareId。
 export const umamiConfig: UmamiConfig = {
-	enable: true,
-	baseUrl: "https://umami.raana.icu",
-	shareId: "aX4gXRBc1JEdp6wW",
+	enable: false,
+	baseUrl: "",
+	shareId: "",
 	timezone: "Asia/Shanghai",
 };
 
-// 防盗链/域名保护配置
+// 防盗链/域名保护配置：非白名单域名访问时弹出安全提醒。
+// 目前关闭。等你有了正式域名，把域名填进 officialSites 再开启即可。
+// 注意：localhost、127.0.0.1 与 *.vercel.app 始终放行，不需要写进白名单。
 export const antiLeechConfig: AntiLeechConfig = {
-	enable: true,
-	officialSites: [{ url: "https://blog.raana.icu", name: "主站" }],
+	enable: false,
+	officialSites: [],
 	debug: false,
 	warningTitle: "⚠️ 域名安全警告",
 	warningMessage:
 		"您可能正在访问非官方网站，存在安全风险！建议跳转到官方网站。",
 };
 
+// Google Analytics。本站未接入，保持关闭；关闭后 Cookie 同意弹窗也不会出现。
 export const googleAnalyticsConfig = {
-	enable: true,
-	measurementId: "G-14FX7R2VJ4",
+	enable: false,
+	measurementId: "",
 };
 
 export const expressiveCodeConfig: ExpressiveCodeConfig = {

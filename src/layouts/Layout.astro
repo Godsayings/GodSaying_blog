@@ -103,7 +103,6 @@ const bannerOffset =
 		{siteConfig.googleSiteVerification && (
 			<meta name="google-site-verification" content={siteConfig.googleSiteVerification} />
 		)}
-		<meta name="msvalidate.01" content="C5E85CB566F21B038B5CF48F91310F09" />
 		<meta name="description" content={description}>
 		<meta name="author" content={profileConfig.name}>
 		{siteConfig.keywords && (
@@ -334,9 +333,9 @@ const bannerOffset =
 		<slot name="head"></slot>
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
-		<!-- Umami 分析（与分享区域保持一致 cloud.umami.is） -->
-		<script defer src="https://umami.raana.icu/script.js" data-website-id="28af012a-b635-4011-bcd5-b08ee8b1a2f8"></script>
-		<!-- Umami 分享数据辅助脚本（缓存 share token / websiteId） -->
+		<!-- 本站未接入任何网站统计服务：Umami 与 Google Analytics 均未启用。
+		     原仓库在这里有一行无条件加载的 Umami 上报脚本（作者自建实例），已移除——
+		     注意 umamiConfig.enable=false 并不能阻止那一行加载，必须删掉标签本身。 -->
 
 		<!-- Google Analytics: 由 Cookie 同意组件动态加载 -->
 
@@ -381,9 +380,11 @@ const bannerOffset =
 			.cc-btn-no{background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--text-color,#ccc);}
 			.cc-btn-yes{background:var(--primary,#a78bfa);color:#fff;}
 		</style>
+		{googleAnalyticsConfig.enable && (
+		<>
 		<div id="cookie-consent-banner">
 			<div class="cc-title">🍪 Cookie</div>
-			<div class="cc-desc">本站使用 Cookie 及第三方服务（Google Analytics）改善浏览体验。Umami 统计不使用 Cookie，始终运行。<br/>This site uses cookies and third-party services (Google Analytics). Umami analytics is cookie-free and always active.<br/><a href="/about-privacy/">隐私政策 / Privacy Policy</a></div>
+			<div class="cc-desc">本站使用 Cookie 及第三方服务（Google Analytics）改善浏览体验。<br/>This site uses cookies and third-party services (Google Analytics).<br/><a href="/about-privacy/">隐私政策 / Privacy Policy</a></div>
 			<div class="cc-actions">
 				<label class="cc-always"><input type="checkbox" id="cc-always" />始终记住 Always</label>
 				<button class="cc-btn cc-btn-yes" id="cookie-accept">同意 Yes</button>
@@ -419,6 +420,8 @@ const bannerOffset =
 			};
 		})();
 		</script>
+		</>
+		)}
 
 	</body>
 </html>

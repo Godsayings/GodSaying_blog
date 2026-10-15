@@ -17,11 +17,9 @@ export const LinkPresets: Partial<Record<LinkPreset, NavBarLink>> = {
 		name: "应用",
 		url: "/apps/",
 	},
-	[LinkPreset.Stats]: {
-		name: "统计",
-		url: "https://umami.raana.icu/share/aX4gXRBc1JEdp6wW",
-		external: true,
-	},
+	// 原仓库的 [LinkPreset.Stats] 指向作者自建的 Umami 分享页（外链，不是本站页面），已移除。
+	// 以后若自建 Umami，把下面这段加回来，并把 url 换成你自己的分享链接：
+	// [LinkPreset.Stats]: { name: "统计", url: "https://你的umami域名/share/你的shareId", external: true },
 	[LinkPreset.Works]: {
 		name: "作品集",
 		url: "/works/",

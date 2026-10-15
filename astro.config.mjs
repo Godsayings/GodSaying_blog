@@ -34,7 +34,9 @@ import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-cop
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://blog.raana.icu",
+    // 站点正式地址。影响 canonical、sitemap、RSS、robots.txt。
+    // 部署到 Vercel 后请把这里换成你的实际域名（Vercel 默认域名或你自己的域名）。
+    site: "https://godsaying-blog.vercel.app",
     base: "/",
     trailingSlash: "always",
     integrations: [swup({

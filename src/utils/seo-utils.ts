@@ -49,9 +49,7 @@ export function buildMetaDescription({
 	}
 
 	if (text.length < META_DESCRIPTION_MIN_LENGTH) {
-		text = normalize(
-			`${text}。持续分享技术教程、开发笔记、问题解决方案与日常折腾记录。`,
-		);
+		text = normalize(`${text}。更多内容持续更新。`);
 	}
 
 	if (text.length > META_DESCRIPTION_MAX_LENGTH) {

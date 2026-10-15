@@ -38,7 +38,11 @@ ori
 # Claude 配置文件夹
 .claude
 
-# 内容分离：content/ 由独立仓库 Kazusa1085/Blog_Archive 同步而来
-# （见 scripts/sync-content.js），不在这个仓库里重复跟踪
-content/
+# 内容分离：原仓库把 content/ 放在独立仓库 Kazusa1085/Blog_Archive，
+# 因此这里原本忽略 content/。本站改用本地内容（ENABLE_CONTENT_SYNC=false），
+# content/ 必须随本仓库提交，否则 Vercel 构建出来的站点没有任何文章。
+# 仅保留同步脚本产生的备份目录忽略规则。
 content.backup-*/
+
+# pnpm 在本仓库内的本地 store（见 .npmrc / 本机沙箱限制）
+.pnpm-store/

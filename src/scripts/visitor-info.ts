@@ -1,8 +1,9 @@
 export function initVisitorInfo(): void {
 	const init = () => {
-		// 猜猜我在哪上学
-		const BLOGGER_LAT = 48.15;
-		const BLOGGER_LON = 11.5696;
+		// 博主坐标，用于计算侧边栏的「与博主距离」。
+		// 想改就改这两行（纬度, 经度）。原作者的坐标（慕尼黑 48.15, 11.5696）已替换。
+		const BLOGGER_LAT = -90.0;
+		const BLOGGER_LON = 0.0;
 
 		// CDN 资源路径
 		const CDN_IMG_CF = "/cdn/cloudflare.svg";

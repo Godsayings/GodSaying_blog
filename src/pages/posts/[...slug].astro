@@ -221,23 +221,29 @@ const breadcrumbJsonLd = {
                 </div>
             </div>
             
-            <!-- Giscus 评论区 -->
-            <script src="https://giscus.app/client.js"
-                    data-repo="Kazusa1085/Giscus"
-                    data-repo-id="R_kgDOS_UtvA"
-                    data-category="Announcements"
-                    data-category-id="DIC_kwDOS_UtvM4C_eg8"
-                    data-mapping="pathname"
-                    data-strict="0"
-                    data-reactions-enabled="1"
-                    data-emit-metadata="0"
-                    data-input-position="top"
-                    data-theme="dark_protanopia"
-                    data-lang="zh-CN"
-                    data-loading="lazy"
-                    crossorigin="anonymous"
-                    async>
-            </script>
+            <!-- 评论区：原仓库这里接的是作者的 giscus 仓库（Kazusa1085/Giscus），
+                 不改的话读者评论会写进作者的 Discussions，因此已移除。
+                 要接自己的评论区，按下面三步做，然后把 script 标签放回这里：
+                   1. 给你的 GitHub 仓库（需为公开仓库）开启 Settings → General → Features → Discussions
+                   2. 到 https://giscus.app 安装 giscus App 到该仓库，并选定一个 Discussion 分类
+                   3. 把 giscus.app 生成的 data-repo / data-repo-id / data-category / data-category-id 填进下面
+                 <script src="https://giscus.app/client.js"
+                         data-repo="你的用户名/你的仓库"
+                         data-repo-id="R_xxxx"
+                         data-category="Announcements"
+                         data-category-id="DIC_xxxx"
+                         data-mapping="pathname"
+                         data-strict="0"
+                         data-reactions-enabled="1"
+                         data-emit-metadata="0"
+                         data-input-position="top"
+                         data-theme="dark_protanopia"
+                         data-lang="zh-CN"
+                         data-loading="lazy"
+                         crossorigin="anonymous"
+                         async>
+                 </script>
+            -->
             
             <!-- 分享按钮功能 -->
             <script>
