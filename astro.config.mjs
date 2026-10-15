@@ -32,11 +32,19 @@ import { expressiveCodeConfig } from "./src/config.ts";
 import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badge.js";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
 
+const vercelHost =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+
+// 站点正式地址。影响 canonical、sitemap、RSS、robots.txt 里的绝对链接。
+// 在 Vercel 上自动取部署域名：优先生产域名（含以后绑定的自定义域名），其次当前部署域名，
+// 所以换域名不需要改这个文件。本地构建取不到这些变量，退回下面的默认值。
+const SITE_URL = vercelHost
+    ? `https://${vercelHost}`
+    : "https://godsaying-blog.vercel.app";
+
 // https://astro.build/config
 export default defineConfig({
-    // 站点正式地址。影响 canonical、sitemap、RSS、robots.txt。
-    // 部署到 Vercel 后请把这里换成你的实际域名（Vercel 默认域名或你自己的域名）。
-    site: "https://godsaying-blog.vercel.app",
+    site: SITE_URL,
     base: "/",
     trailingSlash: "always",
     integrations: [swup({

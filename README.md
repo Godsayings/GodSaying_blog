@@ -129,9 +129,11 @@ content/
 - **自定义背景图**：`siteConfig.background.src`（当前是第三方随机图 API，依赖外部服务）
 - **博主坐标**：`src/scripts/visitor-info.ts` 里的 `BLOGGER_LAT` / `BLOGGER_LON`，
   用于侧边栏的「与博主距离」（当前填的是南极点 `-90, 0`）
-- **站点域名**：`astro.config.mjs` 的 `site` 字段
+- **站点域名**：`astro.config.mjs` 的 `site` 字段（在 Vercel 上自动取自部署域名）
 
-> `site` 决定 canonical、sitemap、RSS 里的绝对地址，换域名时**必须**同步改这里。
+> `site` 决定 canonical、sitemap、RSS 里的绝对地址。在 Vercel 上它由
+> `VERCEL_PROJECT_PRODUCTION_URL`（生产域名）自动推导，绑自定义域名后**无需改代码**；
+> 只有在非 Vercel 平台部署时，才需要手动改 `astro.config.mjs` 里那个默认值。
 
 ---
 
@@ -157,7 +159,8 @@ openssl rand -hex 32
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 
-5. 部署完成后，把 `astro.config.mjs` 里的 `site` 改成你的实际地址并重新推送
+5. 部署完成后**不需要再改代码**：`astro.config.mjs` 会从 Vercel 注入的
+   `VERCEL_PROJECT_PRODUCTION_URL` 自动取部署域名，以后绑定自定义域名也会自动跟随
 
 ### 关于 PoW 防爬（`middleware.ts`）
 
