@@ -1,0 +1,67 @@
+name: Deploy to GitHub Pages
+
+# 这条工作流把站点发布到 GitHub Pages（不需要任何第三方账号）：
+#   https://godsaying.github.io/GodSaying_blog/
+# 构建时注入 GITHUB_PAGES=true，astro.config.mjs 会据此把 base 设成 /GodSaying_blog/。
+# 将来若改用 Vercel，删掉本文件并在仓库 Settings → Pages 里关掉 Pages 即可，
+# 那时 astro.config.mjs 会自动走根路径（Vercel 分支）。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build for GitHub Pages
+        env:
+          # 本站使用仓库内的本地内容，不启用内容分离
+          ENABLE_CONTENT_SYNC: "false"
+          ASTRO_TELEMETRY_DISABLED: "1"
+          # 让 astro.config.mjs 采用 Pages 的 site 与 base
+          GITHUB_PAGES: "true"
+        run: pnpm build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

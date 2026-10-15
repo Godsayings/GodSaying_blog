@@ -35,17 +35,26 @@ import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-cop
 const vercelHost =
     process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
 
+// GitHub Pages 的项目站点挂在子路径下（https://godsaying.github.io/GodSaying_blog/），
+// 由 Pages 工作流注入 GITHUB_PAGES=true 时打开；Vercel 与本地构建都不受影响。
+const isPages = process.env.GITHUB_PAGES === "true";
+
 // 站点正式地址。影响 canonical、sitemap、RSS、robots.txt 里的绝对链接。
-// 在 Vercel 上自动取部署域名：优先生产域名（含以后绑定的自定义域名），其次当前部署域名，
+// Vercel 上自动取部署域名（优先生产域名，含以后绑定的自定义域名，其次当前部署域名），
 // 所以换域名不需要改这个文件。本地构建取不到这些变量，退回下面的默认值。
-const SITE_URL = vercelHost
-    ? `https://${vercelHost}`
-    : "https://godsaying-blog.vercel.app";
+const SITE_URL = isPages
+    ? "https://godsaying.github.io"
+    : vercelHost
+      ? `https://${vercelHost}`
+      : "https://godsaying-blog.vercel.app";
+
+// 子路径部署需要 base；Vercel 与本地都是根路径。
+const BASE_PATH = isPages ? "/GodSaying_blog/" : "/";
 
 // https://astro.build/config
 export default defineConfig({
     site: SITE_URL,
-    base: "/",
+    base: BASE_PATH,
     trailingSlash: "always",
     integrations: [swup({
         theme: false,
