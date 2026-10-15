@@ -13,7 +13,8 @@ import { LinkPreset } from "./types/config";
 export const siteConfig: SiteConfig = {
 	title: "GodSaying 的博客",
 	subtitle: "记录与技术折腾",
-	description: "GodSaying 的个人博客，记录技术学习、开发实践与日常折腾。",
+	description:
+		"GodSaying 的个人博客。这里记录技术学习、开发实践与日常折腾：开发笔记、问题排查过程、工具与效率折腾，以及一些零散的想法，内容持续更新。",
 
 	keywords: [],
 	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
