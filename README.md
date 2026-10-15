@@ -99,13 +99,48 @@ content/
 └── apps/        # 应用（.json）
 ```
 
-以上内容都**随本仓库提交**，推送到 GitHub 后 Vercel 会自动重新构建。
+以上内容都**随本仓库提交**，推送到 GitHub 后 Vercel 会自动重新构建（前提是你已按下面
+「部署到 Vercel」把项目接进来）。仓库里已经放了一篇示例文章
+`content/posts/hello-serverless-blog.md`，可以直接改成你自己的内容，或者删掉。
 
-> 上游原仓库把 `content/` 放在独立的内容仓库里、构建时 clone 进来，因此它的 `.gitignore`
-> 忽略 `content/`。本站已改为本地内容，`.gitignore` 里**不再忽略** `content/`。
->
 > ⚠️ 如果哪天发现线上文章没更新，先确认 `content/` 是否真的提交进仓库了——内容缺失时
 > 构建仍然是绿的，很容易误判成「部署成功」。
+
+### 友链 / 作品 / 应用（这三类是 JSON）
+
+每一条内容 = 对应目录下的一个 `.json` 文件，字段定义来自 `src/content.config.ts`。
+
+**友链** `content/friends/<名字>.json` —— 下面五个字段都必填
+
+| 字段 | 说明 |
+| :--- | :--- |
+| `name` | 站点名称 |
+| `url` | 站点首页地址 |
+| `avatar` | 头像图片地址 |
+| `introduction` | 一句话介绍 |
+| `friendsPage` | 对方的友链页面地址 |
+
+**作品** `content/projects/<名字>.json`
+
+| 字段 | 必填 | 说明 |
+| :--- | :--- | :--- |
+| `title` | 是 | 标题 |
+| `description` | 是 | 简介 |
+| `category` | 是 | `web` / `mobile` / `desktop` / `embedded` / `other` |
+| `status` | 是 | `completed` / `in-progress` / `planned` |
+| `image` `techStack` `sourceCode` `visitUrl` `startDate` `endDate` `featured` `tags` `showImage` | 否 | 没有配图时可用 `showImage: false` 隐藏图片区域 |
+
+**应用** `content/apps/<名字>.json`
+
+| 字段 | 必填 | 说明 |
+| :--- | :--- | :--- |
+| `name` | 是 | 名称 |
+| `url` | 是 | 链接 |
+| `image` | 是 | `public/` 下的路径或完整 URL |
+| `description` `external` | 否 | `external: true` 时在新标签页打开 |
+
+排序：可以在同目录放一个 `_order.json`（字符串数组，写文件名、不含 `.json`）来控制顺序；
+没有这个文件也能正常渲染，只是按文件名排序。这三类目录为空时，页面上会显示对应的空状态提示。
 
 ---
 
@@ -175,6 +210,18 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 其他可调变量：`ALBIREO_DIFFICULTY`（默认 4）、`ALBIREO_CHALLENGE_TTL`（默认 5 分钟）、
 `ALBIREO_SOLVED_TTL`（默认 24 小时）。
+
+### 推送后仓库里会自动跑什么
+
+每次推送到 `main`，GitHub Actions 会跑两个工作流（都已实测为绿）：
+
+| 工作流 | 作用 |
+| :--- | :--- |
+| `CI` | `pnpm install --frozen-lockfile`、`astro check`、类型检查、Biome 检查、构建 |
+| `Build & IndexNow` | 构建，并在配好 `INDEXNOW_KEY` / `INDEXNOW_HOST` 仓库变量时把新链接提交给搜索引擎 |
+
+没配 IndexNow 变量时那一步会直接跳过（它被设为允许失败），工作流不会因此变红。
+这两个工作流与 Vercel 的自动部署相互独立。
 
 ---
 
