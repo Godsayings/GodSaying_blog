@@ -372,7 +372,7 @@ function challengePageHtml(challenge: string, originalPath: string): string {
 <title>正在确认您是真人</title>
 <style>
 :root {
-  --hue: 345;
+  --hue: 200; /* 与 src/config.ts 的 themeColor.hue 保持一致 */
   --primary: oklch(0.75 0.14 var(--hue));
   --primary-soft: oklch(0.75 0.14 var(--hue) / 0.16);
   --page-bg: oklch(0.16 0.014 var(--hue));
