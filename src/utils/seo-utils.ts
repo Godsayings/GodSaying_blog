@@ -51,7 +51,11 @@ export function buildMetaDescription({
 	for (const part of fallbackParts) {
 		if (text.length >= META_DESCRIPTION_MIN_LENGTH) break;
 		if (text.includes(part)) continue;
-		text = normalize(`${text}。${part}`);
+		const candidate = normalize(`${text}。${part}`);
+		// 放不下就别硬塞：否则会被 MAX_LENGTH 从中间截断，
+		// 在搜索结果里露出半截标题（例如「……《本站上线：用 Serv…」）。
+		if (candidate.length > META_DESCRIPTION_MAX_LENGTH) break;
+		text = candidate;
 	}
 
 	if (text.length > META_DESCRIPTION_MAX_LENGTH) {
