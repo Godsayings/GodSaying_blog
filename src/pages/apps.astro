@@ -29,6 +29,7 @@ apps.sort((a, b) => {
 
 <MainGridLayout title="应用合集" description="一些小工具">
   <h1 class="text-3xl font-bold mb-6 text-black/90 dark:text-white/90">应用</h1>
+  {apps.length > 0 ? (
   <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
     {apps.map((app) => (
       <a href={app.data.url}
@@ -48,4 +49,15 @@ apps.sort((a, b) => {
       </a>
     ))}
   </div>
+  ) : (
+    <div class="card-base rounded-[var(--radius-large)] p-8 md:p-12 text-center">
+      <div class="text-5xl md:text-6xl mb-6">🧰</div>
+      <h2 class="text-xl md:text-2xl font-bold mb-3 text-[var(--primary)]">应用整理中</h2>
+      <p class="text-sm md:text-base text-black/60 dark:text-white/60 max-w-md mx-auto leading-relaxed">
+        这里会放一些自己做的小工具和应用。
+        <br />
+        内容还在整理，敬请期待。
+      </p>
+    </div>
+  )}
 </MainGridLayout>

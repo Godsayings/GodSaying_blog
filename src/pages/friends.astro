@@ -60,6 +60,13 @@ friends.sort((a, b) => {
                     </a>
                 ))}
             </div>
+
+            {friends.length === 0 && (
+                <div class="text-center py-12 w-full">
+                    <div class="text-5xl mb-4">🫧</div>
+                    <p class="text-sm md:text-base text-black/50 dark:text-white/50">友链正在收集中，欢迎来交换链接。</p>
+                </div>
+            )}
         </div>
     </div>
 </MainGridLayout>

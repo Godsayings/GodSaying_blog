@@ -1,9 +1,14 @@
 # Fuwari Project Context for AI Agents
 
-> ⚠️ **本文件来自上游仓库。若用户要求部署/定制「本站」，不要按下面第 5 行指向的
-> `docs/AI_DEPLOYMENT_GUIDE.md` 从零执行**——那份 runbook 描述的是原作者的站点，本站已完成改造。
-> 请先读 [`README.md`](./README.md)（本站的实际配置、写作与部署流程）与
-> [`docs/AI_DEPLOYMENT_GUIDE.md`](./docs/AI_DEPLOYMENT_GUIDE.md) 顶部的差异说明。
+> ⚠️ **本文件来自上游仓库，正文描述的是原作者自己的站点。以下事实已不成立，请勿照做：**
+>
+> - 正文里的 GA ID（`G-14FX7R2VJ4`）属于原作者，本站已关闭 Google Analytics
+> - 正文说「Umami 无条件运行」——那段硬编码在 `Layout.astro` 里的上报脚本已删除，本站没有接入任何统计服务
+> - 正文说内容由独立仓库 `Kazusa1085/Blog_Archive` 同步而来——本站**未启用内容分离**，文章直接放在本仓库的 `content/` 目录
+> - 正文提到的友链机器人、`www.micostar.cc` 反链检测、`src/content/posts/` 路径等均不属于本站
+>
+> 本站的实际配置、写作与部署流程见 [`README.md`](./README.md)；
+> [`docs/AI_DEPLOYMENT_GUIDE.md`](./docs/AI_DEPLOYMENT_GUIDE.md) 同样来自上游，不要按它从零执行。
 
 > **File Purpose**: This document consolidates project context for AI agents (Claude, Gemini, etc.) to quickly understand the Fuwari project structure, technology stack, and workflows.
 >
