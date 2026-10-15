@@ -4,8 +4,8 @@
 
 - **框架**：Astro 7 + Svelte 5 + Tailwind CSS 4
 - **内容**：Markdown，直接放在本仓库的 `content/` 目录
-- **部署**：Vercel（纯静态构建 + 边缘中间件）
-- **成本**：0（Vercel 免费套餐足够个人博客使用）
+- **部署**：GitHub Pages（由 GitHub Actions 自动发布）→ <https://godsaying.github.io/GodSaying_blog/>
+- **成本**：0（GitHub Pages 与 GitHub Actions 都在免费额度内）
 
 ---
 
@@ -172,7 +172,36 @@ content/
 
 ---
 
-## 部署到 Vercel
+## 部署（当前：GitHub Pages）
+
+本站已发布在 **<https://godsaying.github.io/GodSaying_blog/>**
+
+- **发布方式**：`.github/workflows/pages.yml` —— 推送到 `main` 就自动构建并发布，不需要你操作
+- **子路径**：项目站点挂在 `/GodSaying_blog/` 下。工作流注入 `GITHUB_PAGES=true`，
+  `astro.config.mjs` 据此把 `base` 设为 `/GodSaying_blog/`；Vercel 与本地仍走根路径
+- **该模式下 PoW 防爬中间件不生效**（纯静态托管跑不了 Vercel 的边缘中间件）
+- 换内容只需改 `content/` 后推送，稍等片刻自动更新
+
+> ⚠️ 访问路径**大小写敏感**：`/GodSaying_blog/` 正常，`/godsaying_blog/` 会返回 404。
+>
+> 另外新建或刚改动 Pages 站点时，GitHub 可能需要一段时间完成预配，期间访问可能
+> 时好时坏（返回「There isn't a GitHub Pages site here」），等几分钟再试即可。
+
+### 改用自己的域名
+
+要绑自定义域名，需要改两处：
+
+1. 仓库 Settings → Pages → Custom domain 填你的域名
+2. `astro.config.mjs` 里 Pages 分支的 `SITE_URL`（当前写死为 `https://godsaying.github.io`），
+   改成你的域名后推送
+
+---
+
+## 备选：部署到 Vercel
+
+> 这是原本计划的方案，需要注册 Vercel 账号并授权 GitHub 访问仓库（我无法代做）。
+> 配置都已保留可用，将来想切过去只需：删掉 `.github/workflows/pages.yml`，
+> 并在仓库 Settings → Pages 里关闭 Pages。
 
 1. 把本仓库推到 GitHub（已完成）
 2. Vercel → Add New Project → 导入本仓库
